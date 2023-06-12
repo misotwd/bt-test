@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 function Header() {
   return (
@@ -10,6 +10,9 @@ function Header() {
           </li>
           <li className="hover:text-red-600">
             <Link href="/users">Users</Link>
+          </li>
+          <li className="hover:text-red-600">
+            <Link href="/sentry">Sentry Error Page</Link>
           </li>
           <li className="hover:text-red-600">
             <Link href="/admin">Admin</Link>

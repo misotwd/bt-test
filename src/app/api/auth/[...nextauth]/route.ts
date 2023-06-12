@@ -1,24 +1,24 @@
-import NextAuth from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import DuendeIDS6Provider from "next-auth/providers/duende-identity-server6";
+import NextAuth from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import DuendeIDS6Provider from 'next-auth/providers/duende-identity-server6';
 
 const handler = NextAuth({
   providers: [
     DuendeIDS6Provider({
-      clientId: "interactive.confidential",
-      clientSecret: "secret",
-      issuer: "https://demo.duendesoftware.com",
+      clientId: 'interactive.confidential',
+      clientSecret: 'secret',
+      issuer: 'https://demo.duendesoftware.com',
     }),
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
-      name: "Credentials",
+      name: 'Credentials',
       // The credentials is used to generate a suitable form on the sign in page.
       // You can specify whatever fields you are expecting to be submitted.
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" },
+        username: {label: 'Username', type: 'text', placeholder: 'jsmith'},
+        password: {label: 'Password', type: 'password'},
       },
       async authorize(credentials, req) {
         // You need to provide your own logic here that takes the credentials
@@ -27,10 +27,10 @@ const handler = NextAuth({
         // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
         // You can also use the `req` object to obtain additional parameters
         // (i.e., the request IP address)
-        const res = await fetch("/your/endpoint", {
-          method: "POST",
+        const res = await fetch('/your/endpoint', {
+          method: 'POST',
           body: JSON.stringify(credentials),
-          headers: { "Content-Type": "application/json" },
+          headers: {'Content-Type': 'application/json'},
         });
         const user = await res.json();
 
@@ -43,19 +43,19 @@ const handler = NextAuth({
       },
     }),
     {
-      id: "playground",
-      name: "playground",
-      type: "oauth",
-      version: "2.0",
+      id: 'playground',
+      name: 'playground',
+      type: 'oauth',
+      version: '2.0',
       authorization: {
-        url: "https://samples.auth0.com/authorize",
+        url: 'https://samples.auth0.com/authorize',
         params: {
-          scope: "openid profile email phone address",
-          redirect_uri: "https://openidconnect.net/callback",
-          type: "code",
+          scope: 'openid profile email phone address',
+          redirect_uri: 'https://openidconnect.net/callback',
+          type: 'code',
         },
       },
-      token: "https://samples.auth0.com/oauth/token",
+      token: 'https://samples.auth0.com/oauth/token',
       // scope: "openid profile email phone address",
       // params: { grant_type: "authorization_code" },
       //   wellKnown: "https://openidconnect.net/callback",
@@ -63,17 +63,18 @@ const handler = NextAuth({
       //requestTokenUrl: process.env.IdentityServer4_URL + "/connect/token",
       // authorizationUrl: process.env.IdentityServer4_URL + "/connect/authorize?response_type=code",
       // profileUrl: process.env.IdentityServer4_URL + "/connect/userinfo",
-      profile: (profile) => {
+      profile: profile => {
         return {
           id: profile.sub,
           name: profile.name,
           email: profile.email,
         };
       },
-      clientId: "kbyuFDidLLm280LIwVFiazOqjO3ty8KH",
-      clientSecret: "60Op4HFM0I8ajz0WdiStAbziZ-VFQttXuxixHHs2R7r7-CW8GR79l-mmLqMhc-Sa",
+      clientId: 'kbyuFDidLLm280LIwVFiazOqjO3ty8KH',
+      clientSecret:
+        '60Op4HFM0I8ajz0WdiStAbziZ-VFQttXuxixHHs2R7r7-CW8GR79l-mmLqMhc-Sa',
     },
   ],
 });
 
-export { handler as GET, handler as POST };
+export {handler as GET, handler as POST};

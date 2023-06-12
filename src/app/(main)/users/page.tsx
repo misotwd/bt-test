@@ -1,10 +1,12 @@
-import axios from "axios";
-import Link from "next/link";
+import axios from 'axios';
+import Link from 'next/link';
 
 const getUsers = async () => {
   const users: Promise<[]> = new Promise((resolve, reject) => {
     setTimeout(async () => {
-      const response = await axios.get("https://jsonplaceholder.typicode.com/users");
+      const response = await axios.get(
+        'https://jsonplaceholder.typicode.com/users'
+      );
       resolve(response.data);
     }, 3000);
   });
