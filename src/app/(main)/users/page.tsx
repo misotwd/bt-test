@@ -1,5 +1,8 @@
+import userRepository from '@/repositories/userRepository ';
 import axios from 'axios';
 import Link from 'next/link';
+
+const users = userRepository().getUsers();
 
 const getUsers = async () => {
   const users: Promise<[]> = new Promise((resolve, reject) => {
@@ -11,7 +14,10 @@ const getUsers = async () => {
     }, 3000);
   });
 
+  // if (1 == 1) return Promise.reject('api error');
+
   return users;
+  //return users;
 };
 
 async function UsersPage() {

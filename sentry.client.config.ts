@@ -2,10 +2,10 @@
 // The config you add here will be used whenever a users loads a page in their browser.
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 
 Sentry.init({
-  dsn: "https://38448153151a49508a76a557a2557e32@o4505329612029952.ingest.sentry.io/4505329620090880",
+  dsn: 'https://38448153151a49508a76a557a2557e32@o4505329612029952.ingest.sentry.io/4505329620090880',
 
   // Adjust this value in production, or use tracesSampler for greater control
   tracesSampleRate: 1,
