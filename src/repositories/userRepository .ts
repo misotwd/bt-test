@@ -1,4 +1,4 @@
-import {httpClient} from '@/services/apiService';
+import {httpClient} from '@/utils/httpClient';
 
 const userRepository = () => {
   return {

@@ -2,8 +2,6 @@ import userRepository from '@/repositories/userRepository ';
 import axios from 'axios';
 import Link from 'next/link';
 
-const users = userRepository().getUsers();
-
 const getUsers = async () => {
   const users: Promise<[]> = new Promise((resolve, reject) => {
     setTimeout(async () => {
@@ -11,7 +9,7 @@ const getUsers = async () => {
         'https://jsonplaceholder.typicode.com/users'
       );
       resolve(response.data);
-    }, 3000);
+    }, 0);
   });
 
   // if (1 == 1) return Promise.reject('api error');
@@ -21,6 +19,10 @@ const getUsers = async () => {
 };
 
 async function UsersPage() {
+  const users2 = await userRepository().getUsers();
+
+  //console.log('users', users2);
+
   const users = await getUsers();
   return users.map((user: any) => (
     <div key={user.id} className="mb-3">

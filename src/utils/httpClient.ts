@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-const API_URL = 'https://jsonplaceholder.typicode.com/users';
+const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
 export const httpClient = axios.create({
-  baseURL: API_URL,
+  withCredentials: true,
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
