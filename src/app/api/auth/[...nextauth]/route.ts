@@ -4,77 +4,49 @@ import DuendeIDS6Provider from 'next-auth/providers/duende-identity-server6';
 
 const handler = NextAuth({
   providers: [
-    DuendeIDS6Provider({
-      clientId: 'interactive.confidential',
-      clientSecret: 'secret',
-      issuer: 'https://demo.duendesoftware.com',
-    }),
-    CredentialsProvider({
-      // The name to display on the sign in form (e.g. 'Sign in with...')
-      name: 'Credentials',
-      // The credentials is used to generate a suitable form on the sign in page.
-      // You can specify whatever fields you are expecting to be submitted.
-      // e.g. domain, username, password, 2FA token, etc.
-      // You can pass any HTML attribute to the <input> tag through the object.
-      credentials: {
-        username: {label: 'Username', type: 'text', placeholder: 'jsmith'},
-        password: {label: 'Password', type: 'password'},
-      },
-      async authorize(credentials, req) {
-        // You need to provide your own logic here that takes the credentials
-        // submitted and returns either a object representing a user or value
-        // that is false/null if the credentials are invalid.
-        // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
-        // You can also use the `req` object to obtain additional parameters
-        // (i.e., the request IP address)
-        const res = await fetch('/your/endpoint', {
-          method: 'POST',
-          body: JSON.stringify(credentials),
-          headers: {'Content-Type': 'application/json'},
-        });
-        const user = await res.json();
-
-        // If no error and we have user data, return it
-        if (res.ok && user) {
-          return user;
-        }
-        // Return null if user data could not be retrieved
-        return null;
-      },
-    }),
     {
-      id: 'playground',
-      name: 'playground',
+      id: 'asgardeo',
+      name: 'Asgardeo',
+      clientId: process.env.ASGARDEO_CLIENT_ID,
+      clientSecret: process.env.ASGARDEO_CLIENT_SECRET,
       type: 'oauth',
-      version: '2.0',
-      authorization: {
-        url: 'https://samples.auth0.com/authorize',
-        params: {
-          scope: 'openid profile email phone address',
-          redirect_uri: 'https://openidconnect.net/callback',
-          type: 'code',
-        },
-      },
-      token: 'https://samples.auth0.com/oauth/token',
-      // scope: "openid profile email phone address",
-      // params: { grant_type: "authorization_code" },
-      //   wellKnown: "https://openidconnect.net/callback",
-      //accessTokenUrl: process.env.IdentityServer4_URL + "/connect/token",
-      //requestTokenUrl: process.env.IdentityServer4_URL + "/connect/token",
-      // authorizationUrl: process.env.IdentityServer4_URL + "/connect/authorize?response_type=code",
-      // profileUrl: process.env.IdentityServer4_URL + "/connect/userinfo",
-      profile: profile => {
+      wellKnown:
+        'https://api.asgardeo.io/t/' +
+        process.env.ASGARDEO_ORGANIZATION_NAME +
+        '/oauth2/token/.well-known/openid-configuration',
+      authorization: {params: {scope: 'openid email profile internal_login'}},
+      idToken: true,
+      checks: ['pkce', 'state'],
+      profile(profile) {
+        console.log('profile', profile);
         return {
           id: profile.sub,
           name: profile.name,
           email: profile.email,
         };
       },
-      clientId: 'kbyuFDidLLm280LIwVFiazOqjO3ty8KH',
-      clientSecret:
-        '60Op4HFM0I8ajz0WdiStAbziZ-VFQttXuxixHHs2R7r7-CW8GR79l-mmLqMhc-Sa',
     },
   ],
+
+  secret: process.env.NEXTAUTH_SECRET,
+
+  session: {
+    strategy: 'jwt',
+  },
+  callbacks: {
+    async session({session, token, user}) {
+      session.accessToken = token.accessToken;
+      session.idToken = token.idToken;
+      return session;
+    },
+    async jwt({token, user, account, profile, isNewUser}) {
+      if (account) {
+        token.accessToken = account.access_token;
+        token.idToken = account.id_token;
+      }
+      return token;
+    },
+  },
 });
 
 export {handler as GET, handler as POST};

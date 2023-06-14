@@ -1,5 +1,5 @@
 import axios from 'axios';
-import UserDetails from '../../components/UserDetails';
+import UserDetails from '../../../../components/UserDetails';
 
 type UserPageOarams = {
   params: {id: string};

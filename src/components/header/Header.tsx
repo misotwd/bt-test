@@ -1,18 +1,9 @@
-import Link from 'next/link';
+import Navbar from './Navbar';
 
 function Header() {
   return (
-    <header>
-      <nav>
-        <ul className="flex [&>li]:mr-8 ">
-          <li className="hover:text-red-600">
-            <Link href="/">Home</Link>
-          </li>
-          <li className="hover:text-red-600">
-            <Link href="/admin">Admin</Link>
-          </li>
-        </ul>
-      </nav>
+    <header className="border-b-2 p-2">
+      <Navbar />
     </header>
   );
 }

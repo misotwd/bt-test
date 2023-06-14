@@ -1,5 +1,11 @@
+import SessionData from '@/components/SessionData';
+
 function HomePage() {
-  return <div>Home Page</div>;
+  return (
+    <>
+      <h1>home paage</h1>
+    </>
+  );
 }
 
 export default HomePage;
