@@ -2,11 +2,9 @@ import '../globals.css';
 import {Inter} from 'next/font/google';
 
 import Header from '@/components/header/Header';
+import AuthTokenSetup from '@/components/AuthTokenSetup';
 import NextAuthProvider from '@/providers/NextAuthProvider';
-import AuthSessionSetup from '@/components/AuthSessionSetup';
-
-import {getServerSession} from 'next-auth/next';
-import {authOptions} from '@/lib/auth';
+import ReactQueryClientProvider from '@/providers/ReactQueryClientProvider';
 
 const inter = Inter({subsets: ['latin']});
 
@@ -20,17 +18,17 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
-  console.log(session);
-
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextAuthProvider>
-          <AuthSessionSetup sessionServer={session} />
-          <Header />
-          <main>{children}</main>
-        </NextAuthProvider>
+        <ReactQueryClientProvider>
+          <NextAuthProvider>
+            {/* <AuthTokenSetup> */}
+            <Header />
+            <main>{children}</main>
+            {/* </AuthTokenSetup> */}
+          </NextAuthProvider>
+        </ReactQueryClientProvider>
       </body>
     </html>
   );

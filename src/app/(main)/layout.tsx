@@ -4,6 +4,8 @@ import '../globals.css';
 
 import NextAuthProvider from '@/providers/NextAuthProvider';
 import Header from '@/components/header/Header';
+import AuthTokenSetup from '@/components/AuthTokenSetup';
+import ReactQueryClientProvider from '@/providers/ReactQueryClientProvider';
 
 const inter = Inter({subsets: ['latin']});
 
@@ -16,10 +18,14 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextAuthProvider>
-          <Header />
-          <main className="mt-4">{children}</main>
-        </NextAuthProvider>
+        <ReactQueryClientProvider>
+          <NextAuthProvider>
+            <AuthTokenSetup>
+              <Header />
+              <main className="mt-4">{children}</main>
+            </AuthTokenSetup>
+          </NextAuthProvider>
+        </ReactQueryClientProvider>
       </body>
     </html>
   );

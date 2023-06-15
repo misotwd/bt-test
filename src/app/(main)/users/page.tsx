@@ -3,33 +3,19 @@ import Link from 'next/link';
 
 import userRepository from '@/api/repositories/userRepository ';
 
-const getUsers = async () => {
-  const users: Promise<[]> = new Promise((resolve, reject) => {
-    setTimeout(async () => {
-      const response = await axios.get(
-        'https://jsonplaceholder.typicode.com/users'
-      );
-      resolve(response.data);
-    }, 0);
-  });
-
-  // if (1 == 1) return Promise.reject('api error');
-
-  return users;
-};
-
 async function UsersPage() {
-  const users = await userRepository().getUsers();
+  // const users = await userRepository().getUsers();
 
   //console.log('users', users2);
 
-  return users.map((user: any) => (
-    <div key={user.id} className="mb-3">
-      <Link href={`/user/${user.id}`}>
-        <h1>{user.name}</h1>
-      </Link>
-    </div>
-  ));
+  return <h1>Users</h1>;
+  // return users.map((user: any) => (
+  //   <div key={user.id} className="mb-3">
+  //     <Link href={`/user/${user.id}`}>
+  //       <h1>{user.name}</h1>
+  //     </Link>
+  //   </div>
+  // ));
 }
 
 export default UsersPage;

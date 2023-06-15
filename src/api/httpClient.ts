@@ -1,19 +1,18 @@
 import axios from 'axios';
-import {getSession} from 'next-auth/react';
+import {Session} from 'next-auth';
 
-const BASE_URL = 'https://jsonplaceholder.typicode.com';
+// const BASE_URL = 'https://jsonplaceholder.typicode.com';
+const BASE_URL = 'http://localhost:3000';
 
 export const httpClient = axios.create({
-  withCredentials: true,
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-export const setAuthToken = async () => {
+export const setAuthToken = async (session: Session | null) => {
   console.log('setAuthToken called');
-  const session = await getSession();
   if (session?.accessToken) {
     httpClient.defaults.headers.common[
       'Authorization'

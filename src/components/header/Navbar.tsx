@@ -11,6 +11,9 @@ function Navbar() {
           <Link href="/users">Users</Link>
         </li>
         <li className="hover:text-red-600">
+          <Link href="/users-client-fetch">Users-Client</Link>
+        </li>
+        <li className="hover:text-red-600">
           <Link href="/sentry">Sentry Error Page</Link>
         </li>
         <li className="hover:text-red-600">
