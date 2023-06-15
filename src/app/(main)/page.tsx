@@ -1,5 +1,3 @@
-import SessionData from '@/components/SessionData';
-
 function HomePage() {
   return (
     <>

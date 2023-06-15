@@ -19,11 +19,10 @@ const getUsers = async () => {
 };
 
 async function UsersPage() {
-  const users2 = await userRepository().getUsers();
+  const users = await userRepository().getUsers();
 
   //console.log('users', users2);
 
-  const users = await getUsers();
   return users.map((user: any) => (
     <div key={user.id} className="mb-3">
       <Link href={`/user/${user.id}`}>

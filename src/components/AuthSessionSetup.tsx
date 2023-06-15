@@ -1,11 +1,17 @@
 'use client';
 
+import {setAuthToken} from '@/api/httpClient';
 import {useSession} from 'next-auth/react';
+import {useEffect} from 'react';
 
-function AuthSessionSetup() {
+function AuthSessionSetup({sessionServer}: {sessionServer: any}) {
   const {data: session, status} = useSession();
-  console.log(session);
-  console.log(status);
+
+  console.log('sessionServer', sessionServer);
+
+  useEffect(() => {
+    setAuthToken();
+  }, [session]);
 
   return null;
 }
