@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 
 async function Header() {
   const session = await getServerSession(authOptions);
-  //console.log(session);
+  console.log('header');
 
   return (
     <header className="border-b-2 p-2 flex justify-between items-center">

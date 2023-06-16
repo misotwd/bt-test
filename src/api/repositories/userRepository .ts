@@ -1,6 +1,8 @@
 import {httpClient} from '@/api/httpClient';
+import {cp} from 'fs';
 import {getSession} from 'next-auth/react';
 
+// seperate the logic from
 const userRepository = () => {
   return {
     getUsers: async () => {
@@ -19,10 +21,13 @@ const userRepository = () => {
     },
     nextRouteHandler: async () => {
       const response = await httpClient.get('/api/users');
-      console.log(response.data);
       return response.data.data;
     },
   };
 };
 
 export default userRepository;
+
+export const UserQueryKeys = {
+  USERS: 'USERS',
+} as const;

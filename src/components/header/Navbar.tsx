@@ -17,7 +17,7 @@ function Navbar() {
           <Link href="/sentry">Sentry Error Page</Link>
         </li>
         <li className="hover:text-red-600">
-          <Link href="/test">Test Page</Link>
+          <Link href="/server-page">Server Page</Link>
         </li>
         <li className="hover:text-red-600">
           <Link href="/admin">Admin</Link>

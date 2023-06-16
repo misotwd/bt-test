@@ -1,16 +1,16 @@
 'use client';
 
-import userRepository from '@/api/repositories/userRepository ';
+import userRepository, {
+  UserQueryKeys,
+} from '@/api/repositories/userRepository ';
 import {useQuery} from '@tanstack/react-query';
 import Link from 'next/link';
 
 function UsersClient() {
   const {data, isLoading, error, isError} = useQuery({
-    queryKey: ['users'],
+    queryKey: [UserQueryKeys.USERS],
     queryFn: userRepository().nextRouteHandler,
   });
-
-  console.log(data);
 
   if (isLoading) return <div>Loading...</div>;
 
