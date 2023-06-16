@@ -1,4 +1,4 @@
-import UsersClient from '@/components/Users';
+import UsersClient from '@/components/UsersClient';
 
 function UsersPageClient() {
   return <UsersClient />;

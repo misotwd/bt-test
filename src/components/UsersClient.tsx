@@ -5,7 +5,7 @@ import {useQuery} from '@tanstack/react-query';
 import Link from 'next/link';
 
 function UsersClient() {
-  const {data, isLoading} = useQuery({
+  const {data, isLoading, error, isError} = useQuery({
     queryKey: ['users'],
     queryFn: userRepository().nextRouteHandler,
   });
@@ -13,6 +13,10 @@ function UsersClient() {
   console.log(data);
 
   if (isLoading) return <div>Loading...</div>;
+
+  if (isError && error instanceof Error) {
+    return <div>{error.message}</div>;
+  }
 
   //   return <h1>Users</h1>;
 

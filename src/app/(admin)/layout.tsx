@@ -2,7 +2,7 @@ import '../globals.css';
 import {Inter} from 'next/font/google';
 
 import Header from '@/components/header/Header';
-import AuthTokenSetup from '@/components/AuthTokenSetup';
+import AuthTokenHandler from '@/lib/AuthTokenHandler';
 import NextAuthProvider from '@/providers/NextAuthProvider';
 import ReactQueryClientProvider from '@/providers/ReactQueryClientProvider';
 
@@ -23,10 +23,10 @@ export default async function RootLayout({
       <body className={inter.className}>
         <ReactQueryClientProvider>
           <NextAuthProvider>
-            {/* <AuthTokenSetup> */}
+            {/* <AuthTokenHandler> */}
             <Header />
             <main>{children}</main>
-            {/* </AuthTokenSetup> */}
+            {/* </AuthTokenHandler> */}
           </NextAuthProvider>
         </ReactQueryClientProvider>
       </body>

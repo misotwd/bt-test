@@ -18,12 +18,9 @@ const userRepository = () => {
       };
     },
     nextRouteHandler: async () => {
-      try {
-        const response = await httpClient.get('/api/users');
-        return response.data.data;
-      } catch (error) {
-        // handle error
-      }
+      const response = await httpClient.get('/api/users');
+      console.log(response.data);
+      return response.data.data;
     },
   };
 };
