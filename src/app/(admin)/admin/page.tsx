@@ -1,8 +1,6 @@
 import SessionData from '@/components/SessionData';
 import React from 'react';
 
-import {getServerSession} from 'next-auth/next';
-
 function AdminPage() {
   return (
     <>

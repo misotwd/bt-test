@@ -1,8 +1,8 @@
 import axios from 'axios';
 import {Session} from 'next-auth';
 
-// const BASE_URL = 'https://jsonplaceholder.typicode.com';
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://jsonplaceholder.typicode.com';
+// const BASE_URL = 'http://localhost:3000';
 
 export const httpClient = axios.create({
   baseURL: BASE_URL,

@@ -1,32 +1,21 @@
 import {httpClient} from '@/api/httpClient';
-import {cp} from 'fs';
-import {getSession} from 'next-auth/react';
 
-// seperate the logic from
-const userRepository = () => {
-  return {
-    getUsers: async () => {
-      try {
-        const response = await httpClient.get('/users');
-        return response.data;
-      } catch (error) {
-        // handle error
-      }
-    },
-    editUser: (name: string, surname: string) => {
-      return {
-        name,
-        surname,
-      };
-    },
-    nextRouteHandler: async () => {
-      const response = await httpClient.get('/api/users');
-      return response.data.data;
-    },
-  };
+export const getUsers = async () => {
+  const response = await httpClient.get('/users');
+  return response.data;
 };
 
-export default userRepository;
+export const getUser = async (id: string) => {
+  const response = await httpClient.get(`/users/${id}`);
+  return response.data;
+};
+
+export const tokenApi = async () => {
+  const response = await httpClient.get(
+    'http://localhost:3000/api/requiretoken'
+  );
+  return response.data;
+};
 
 export const UserQueryKeys = {
   USERS: 'USERS',

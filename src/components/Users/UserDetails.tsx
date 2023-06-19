@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const getUser = async (id: string) => {
-  console.log('getUser');
   const promise: Promise<any> = new Promise(resolve => {
     setTimeout(async () => {
       const response = await axios.get(
@@ -17,10 +16,6 @@ const getUser = async (id: string) => {
 
 async function UserDetails({id}: {id: string}) {
   const user = await getUser(id);
-
-  function add(a: number, b: number) {
-    return a + b;
-  }
 
   return (
     <>

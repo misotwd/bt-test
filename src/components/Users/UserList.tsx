@@ -1,24 +1,18 @@
 'use client';
 
-import userRepository, {
-  UserQueryKeys,
-} from '@/api/repositories/userRepository ';
+import {UserQueryKeys, getUsers} from '@/api/repositories/userRepository ';
 import {useQuery} from '@tanstack/react-query';
 import Link from 'next/link';
 
-function UsersClient() {
+function UserList() {
   const {data, isLoading, error, isError} = useQuery({
     queryKey: [UserQueryKeys.USERS],
-    queryFn: userRepository().nextRouteHandler,
+    queryFn: getUsers,
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>useQuery Loading...</div>;
 
-  if (isError && error instanceof Error) {
-    return <div>{error.message}</div>;
-  }
-
-  //   return <h1>Users</h1>;
+  if (isError && error instanceof Error) return <div>{error.message}</div>;
 
   return data.map((user: any) => (
     <div key={user.id} className="mb-3">
@@ -29,4 +23,4 @@ function UsersClient() {
   ));
 }
 
-export default UsersClient;
+export default UserList;

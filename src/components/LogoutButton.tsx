@@ -1,12 +1,8 @@
 'use client';
 
-import {signOut, useSession} from 'next-auth/react';
+import {signOut} from 'next-auth/react';
 
 function LogoutButton() {
-  const {status} = useSession();
-
-  if (status !== 'authenticated') return null;
-
   return (
     <button
       onClick={() => signOut()}

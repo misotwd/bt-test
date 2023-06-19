@@ -2,7 +2,7 @@
 
 import {httpClient, setAuthToken} from '@/api/httpClient';
 import {useSession} from 'next-auth/react';
-import {useEffect, useLayoutEffect} from 'react';
+import {useLayoutEffect} from 'react';
 
 import {signIn} from 'next-auth/react';
 
