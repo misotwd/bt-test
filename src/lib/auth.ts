@@ -1,4 +1,3 @@
-import {httpClient} from '@/api/httpClient';
 import type {NextAuthOptions} from 'next-auth';
 
 export const authOptions: NextAuthOptions = {
@@ -33,13 +32,8 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async session({session, token, user}) {
-      console.log('session callbacks called');
       session.accessToken = token.accessToken;
       session.idToken = token.idToken;
-
-      // httpClient.defaults.headers.common[
-      //   'Authorization'
-      // ] = `Bearer ${session.accessToken}`;
       return session;
     },
     async jwt({token, user, account, profile}) {

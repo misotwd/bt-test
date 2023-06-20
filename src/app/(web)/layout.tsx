@@ -1,11 +1,11 @@
 import {Inter} from 'next/font/google';
+import {Suspense} from 'react';
 
 import '../globals.css';
 import NextAuthProvider from '@/providers/NextAuthProvider';
 import ReactQueryClientProvider from '@/providers/ReactQueryClientProvider';
 
 import Header from '@/components/web/header/Header';
-import {Suspense} from 'react';
 
 const inter = Inter({subsets: ['latin']});
 
@@ -24,7 +24,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <ReactQueryClientProvider>
           <NextAuthProvider>
-            <Suspense fallback={'kjhkjh'}>
+            <Suspense fallback={<div>Loading...</div>}>
               <Header />
               <main className="mt-4">{children}</main>
             </Suspense>

@@ -6,7 +6,6 @@ import LogoutButton from '@/components/LogoutButton';
 
 async function Header() {
   const session = await getServerSession(authOptions);
-  console.log('header server component');
 
   return (
     <header className="border-b-2 p-2 flex justify-between items-center">
