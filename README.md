@@ -33,13 +33,12 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-ENV variable required:
+ENV variable required: <br>
 .env.local
 
-NEXT_PUBLIC_API_BASE_URL = https://jsonplaceholder.typicode.com
-
-NEXTAUTH_URL = http://localhost:3000
-NEXTAUTH_SECRET = supersecretword
-ASGARDEO_CLIENT_ID =
-ASGARDEO_CLIENT_SECRET =
-ASGARDEO_ORGANIZATION_NAME =
+NEXT_PUBLIC_API_BASE_URL = https://jsonplaceholder.typicode.com <br>
+NEXTAUTH_URL = http://localhost:3000 <br>
+NEXTAUTH_SECRET = supersecretword <br>
+ASGARDEO_CLIENT_ID = <br>
+ASGARDEO_CLIENT_SECRET = <br>
+ASGARDEO_ORGANIZATION_NAME = <br>
